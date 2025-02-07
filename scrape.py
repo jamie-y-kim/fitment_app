@@ -4,6 +4,7 @@ import pandas as pd
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
+from process_data import process_data
 
 # eBay 상품 URL
 # url = "https://www.ebay.com/itm/133055316399?_trkparms=amclksrc%3DITM%26aid%3D777008%26algo%3DPERSONAL.TOPIC%26ao%3D1%26asc%3D20230823115209%26meid%3Dddff90da76d44343bb9bd2445639ea20%26pid%3D101800%26rk%3D1%26rkt%3D1%26itm%3D133055316399%26pmt%3D1%26noa%3D1%26pg%3D4375194%26algv%3DRecentlyViewedItemsV2SignedOut&_trksid=p4375194.c101800.m5481&_trkparms=parentrq%3Adea6a25f1940a67a10b37a2fffffabec%7Cpageci%3A60b106d4-e50b-11ef-b6d4-ba2a3d3bf849%7Ciid%3A1%7Cvlpname%3Avlp_homepage"
@@ -55,3 +56,5 @@ df = pd.DataFrame(all_data, columns=["Year", "Make", "Model", "Trim", "Engine", 
 df.to_excel(f"{file_name}.xlsx", index=False)
 
 print(f"{file_name}.xlsx 파일이 저장 완료:D")
+
+process_data(f"{file_name}.xlsx")
