@@ -22,19 +22,14 @@ def process_data(input_file):
 
       # Split the trim string
       parts = trim.split()
-      
-      if len(parts) > 2:
-        submodel = parts[0]  # The first part is usually the submodel
-        body_type = parts[1] if len(parts) > 1 else None  
-        body_number = parts[2] if len(parts) > 2 else None  
 
-        # Search for a number before the hyphen
-        match = re.match(r'(\d)-', parts[2])
-        if match:
-          body_number = match.group(1)  # Extract the number before the hyphen
-      else:
-        print("Insufficient Trim Input")
-        return None, None, None 
+      submodel = " ".join(parts[:-2])
+      body_type = parts[-2]
+
+      # Search for a number before the hyphen
+      match = re.match(r'(\d)-', parts[-1])
+      if match:
+        body_number = int(match.group(1))  # Extract the number before the hyphen
       
       return submodel, body_type, body_number
 
